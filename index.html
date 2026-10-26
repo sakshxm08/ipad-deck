@@ -18,19 +18,19 @@
 [data-theme=moss]{--bg:#06130f;--accent:#6fe3b9;--accent2:#59c8ff;--b1:#14b98a;--b2:#1a8cff;--b3:#7be35a}
 [data-theme=orchid]{--bg:#12091d;--accent:#dba6ff;--accent2:#ff9fd2;--b1:#a23dff;--b2:#ff4fa8;--b3:#4f6dff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;background:var(--bg);color:var(--text);font:400 var(--t-md)/1.47 -apple-system,"SF Pro Text","SF Pro Rounded",system-ui,sans-serif;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+html,body{margin:0;background:var(--bg);color:var(--text);font:500 var(--t-md)/1.47 -apple-system,"SF Pro Text","SF Pro Rounded",system-ui,sans-serif;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
 body{min-height:100vh;padding:calc(env(safe-area-inset-top,0px) + 22px) calc(env(safe-area-inset-right,0px) + 26px) calc(env(safe-area-inset-bottom,0px) + 32px) calc(env(safe-area-inset-left,0px) + 26px)}
 main{position:relative;z-index:1;max-width:1120px;margin:0 auto}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;touch-action:manipulation}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.dim{color:var(--dim);font-size:var(--t-sm)}
+.dim{color:var(--dim);font-size:var(--t-sm);font-weight:500}
 
 /* Ambient light behind the glass */
 .ambient{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none}
-.ambient i{position:absolute;width:70vmax;height:70vmax;border-radius:50%;opacity:.55;animation:drift 38s ease-in-out infinite alternate}
+.ambient i{position:absolute;width:70vmax;height:70vmax;border-radius:50%;opacity:.42;animation:drift 38s ease-in-out infinite alternate}
 .ambient i:nth-child(1){background:radial-gradient(circle,var(--b1),transparent 62%);top:-25vmax;left:-20vmax}
 .ambient i:nth-child(2){background:radial-gradient(circle,var(--b2),transparent 62%);bottom:-30vmax;right:-20vmax;animation-duration:46s;animation-direction:alternate-reverse}
-.ambient i:nth-child(3){background:radial-gradient(circle,var(--b3),transparent 62%);top:25vmax;left:30vw;opacity:.3;animation-duration:54s}
+.ambient i:nth-child(3){background:radial-gradient(circle,var(--b3),transparent 62%);top:25vmax;left:30vw;opacity:.22;animation-duration:54s}
 @keyframes drift{to{transform:translate3d(8vmax,6vmax,0) scale(1.12)}}
 
 /* Liquid glass: blur, saturation, specular edge, soft depth */
@@ -38,7 +38,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;touch-
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.palette,.card,.icon-btn,#sheet,#toast{background:rgba(30,32,52,.88)}}
 
 header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-#greet{font-size:var(--t-xl);font-weight:600;letter-spacing:-.02em}
+#greet{font-size:var(--t-xl);font-weight:800;letter-spacing:-.02em}
 .icon-btn{width:48px;height:48px;border-radius:50%;font-size:20px;transition:transform .2s var(--ease)}
 
 /* Command palette */
@@ -55,39 +55,41 @@ kbd{font:500 var(--t-xs) system-ui,sans-serif;padding:4px 10px;border-radius:8px
 #res li button{display:flex;align-items:center;gap:14px;width:100%;min-height:56px;padding:6px 14px;border-radius:var(--r-md);text-align:left;transition:background .2s,transform .15s var(--ease)}
 #res li button:active{transform:scale(.97)}
 #res li.on button{background:color-mix(in srgb,var(--accent) 20%,transparent);box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
-.ic{flex:none;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font-style:normal;font-weight:600;font-size:var(--t-sm);color:var(--bg);background:linear-gradient(135deg,var(--accent),var(--accent2))}
+.ic{flex:none;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:var(--t-sm);color:var(--accent);background:rgba(255,255,255,.1)}
 .tx{display:grid;min-width:0}
-.tx b{font-weight:500;font-size:var(--t-md);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tx b{font-weight:600;font-size:var(--t-md);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tx small{color:var(--dim);font-size:var(--t-xs);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #res.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:8px;padding-top:10px}
-#res.tiles li button{background:rgba(255,255,255,.05);border:1px solid var(--line)}
+#res.tiles li button{background:rgba(255,255,255,.06)}
 @media (hover:hover){#res li button:hover{background:rgba(255,255,255,.09)}.chip:hover{background:rgba(255,255,255,.14)}.btn:hover{filter:brightness(1.08)}}
 
 /* Widgets */
-#grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:20px}
-.card{border-radius:var(--r-lg);padding:28px;min-height:216px;animation:rise .8s var(--ease) both}
+#grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;grid-auto-flow:dense}
+.card{border-radius:var(--r-lg);padding:28px;min-height:240px;display:flex;flex-direction:column;justify-content:center;animation:rise .8s var(--ease) both}
 #grid>.card:nth-child(2){animation-delay:.08s}
 #grid>.card:nth-child(3){animation-delay:.16s}
 #grid>.card:nth-child(4){animation-delay:.24s}
 @keyframes rise{from{opacity:0;transform:translateY(18px) scale(.985)}}
-.wide{grid-column:1/-1}
-#time{font-size:clamp(64px,11vw,112px);font-weight:200;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
-#time small{font-size:.26em;font-weight:400;letter-spacing:0;margin-left:.3em;color:var(--dim)}
-#date{margin-top:16px;color:var(--dim);font-size:var(--t-lg);letter-spacing:-.01em}
-.wxh{display:flex;align-items:center;gap:16px;margin-bottom:12px}
-#wxT{font-size:84px;font-weight:200;letter-spacing:-.04em;line-height:1}
+.card[hidden]{display:none}
+#w-notes{justify-content:flex-start;min-height:210px}
+#w-weather{text-align:center}
+#time{font-size:clamp(76px,13vw,132px);font-weight:700;letter-spacing:-.045em;line-height:1;text-align:center;font-variant-numeric:tabular-nums}
+#time small{font-size:.24em;font-weight:600;letter-spacing:0;margin-left:.25em;color:var(--dim)}
+#date{margin-top:14px;text-align:center;color:var(--dim);font-size:var(--t-lg);font-weight:600;letter-spacing:-.01em}
+.wxh{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:12px}
+#wxT{font-size:76px;font-weight:700;letter-spacing:-.04em;line-height:1}
 .wxi{font-size:56px;line-height:1;filter:drop-shadow(0 6px 14px rgba(0,0,0,.35))}
-.wxd{font-size:var(--t-lg);font-weight:500;letter-spacing:-.01em;margin-bottom:4px}
-.trow{display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.wxd{font-size:var(--t-lg);font-weight:700;letter-spacing:-.01em;margin-bottom:4px}
+.trow{display:flex;flex-direction:column;gap:18px;align-items:center}
 .ring{position:relative;width:156px;height:156px;flex:none;filter:drop-shadow(0 0 14px color-mix(in srgb,var(--accent) 40%,transparent))}
 .ring svg{width:100%;height:100%}
 #arc{transition:stroke-dashoffset .3s linear}
-#tt{position:absolute;inset:0;display:grid;place-items:center;font-size:var(--t-xl);font-weight:300;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.tside{display:grid;gap:16px}
-#presets{display:flex;gap:8px;flex-wrap:wrap}
-.chip{min-height:44px;padding:0 18px;border-radius:22px;background:rgba(255,255,255,.07);border:1px solid var(--line);font-size:var(--t-sm);font-weight:500;transition:background .2s,transform .15s var(--ease)}
+#tt{position:absolute;inset:0;display:grid;place-items:center;font-size:var(--t-xl);font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tside{display:grid;gap:14px;justify-items:center}
+#presets{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.chip{min-height:44px;padding:0 18px;border-radius:22px;background:rgba(255,255,255,.07);border:1px solid var(--line);font-size:var(--t-sm);font-weight:600;transition:background .2s,transform .15s var(--ease)}
 .chip.on{background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--bg);border-color:transparent;box-shadow:0 8px 20px -8px var(--accent)}
-.btn{min-height:52px;padding:0 28px;border-radius:26px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--bg);font-weight:600;font-size:var(--t-md);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 10px 24px -10px var(--accent);transition:transform .15s var(--ease),filter .2s}
+.btn{min-height:52px;padding:0 28px;border-radius:26px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--bg);font-weight:700;font-size:var(--t-md);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 10px 24px -10px var(--accent);transition:transform .15s var(--ease),filter .2s}
 .btn.ghost{background:rgba(255,255,255,.08);color:var(--text);font-weight:500;border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
 .btn:active,.chip:active,.icon-btn:active{transform:scale(.96)}
 .done .ring{animation:pulse 1s 3}
@@ -117,6 +119,10 @@ input[type=checkbox]:checked{background:linear-gradient(135deg,var(--accent),var
 input[type=checkbox]:checked::after{transform:translateX(20px)}
 #toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 24px);transform:translate(-50%,20px);padding:12px 22px;border-radius:26px;font-weight:600;font-size:var(--t-sm);background:color-mix(in srgb,var(--accent) 32%,rgba(20,22,40,.6));opacity:0;pointer-events:none;transition:opacity .3s,transform .4s var(--ease);z-index:6}
 #toast.show{opacity:1;transform:translate(-50%,0)}
+/* Bento layout: 12 columns on iPad landscape, 2 on portrait, 1 on phones */
+#w-clock{grid-column:span 7}#w-weather{grid-column:span 5}#w-timer{grid-column:span 5}#w-notes{grid-column:span 7}
+@media (max-width:900px){#w-clock,#w-notes{grid-column:1/-1}#w-timer,#w-weather{grid-column:span 6}}
+@media (max-width:620px){#grid{gap:14px}#w-timer,#w-weather{grid-column:1/-1}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -144,7 +150,7 @@ input[type=checkbox]:checked::after{transform:translateX(20px)}
         </div>
         <div class="tside">
           <div id="presets"></div>
-          <div class="row" style="justify-content:flex-start"><button class="btn" id="go">Start</button><button class="btn ghost" id="rs">Reset</button></div>
+          <div class="row" style="justify-content:center"><button class="btn" id="go">Start</button><button class="btn ghost" id="rs">Reset</button></div>
         </div>
       </div>
     </section>
